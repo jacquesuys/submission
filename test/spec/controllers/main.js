@@ -15,8 +15,8 @@ describe('Controller: MainCtrl', function () {
     });
   }));
 
-  it('should not have an empty object on the fund', function () {
-    expect($scope.fund).not.toBeNull();
+  it('can\'t think of anything to test here', function () {
+    expect(true).toEqual(true);
   });
 
 });
