@@ -17,7 +17,7 @@ describe('Service: Mainservice', function () {
   });
 
   it('should return the following results', function() {
-    httpBackend.whenGET('../../data/fund.json').respond({
+    httpBackend.whenGET('../../data/fund.json').respond(200, {
       "fund": {
         "Fund Name": "JPMorgan Japan Smaller Companies Investment Trust Plc-JPM Japan Smaller 2014 Subs",
         "security": "GB0031835111",
@@ -40,5 +40,7 @@ describe('Service: Mainservice', function () {
         "Date": "26/09/2014"
       }
     });
+    
+    httpBackend.flush();
   });
 });
