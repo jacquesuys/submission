@@ -2,7 +2,7 @@
 
 ## Installing
 
-Run `npm install && bower install && grunt serve`.
+Run `npm install && bower install`.
 
 ## Build & development
 
