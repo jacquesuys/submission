@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: mainService', function () {
+describe('Service: Mainservice', function () {
 
   // load the service's module
   beforeEach(module('fundlistApp'));
 
   // instantiate service
-  var mainService;
-  beforeEach(inject(function (_mainService_) {
-    mainService = _mainService_;
+  var Mainservice;
+  beforeEach(inject(function (_Mainservice_) {
+    Mainservice = _Mainservice_;
   }));
 
   it('should do something', function () {
-    expect(!!mainService).toBe(true);
+    expect(!!Mainservice).toBe(true);
   });
 
 });
