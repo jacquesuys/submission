@@ -6,14 +6,14 @@ describe('Filter: mainFilter', function () {
   beforeEach(module('fundlistApp'));
 
   // initialize a new instance of the filter before each test
-  var mainFilter;
+  var convertUSDate;
   beforeEach(inject(function ($filter) {
-    mainFilter = $filter('mainFilter');
+    convertUSDate = $filter('convertUSDate');
   }));
 
-  it('should return the input prefixed with "mainFilter filter:"', function () {
-    var text = 'angularjs';
-    expect(mainFilter(text)).toBe('mainFilter filter: ' + text);
+  it('should return the input with the new date format"', function () {
+    var text = '03/04/1975';
+    expect(convertUSDate(text)).toBe('04/03/1975');
   });
 
 });
