@@ -4,7 +4,8 @@
   <div>Currency {{ fund["Currency"] }}</div>
   <div>Launch Date {{ fund["Launch Date"] || "- -" | convertUSDate }}</div>
   <div>Morningstar Rating {{ fund["Morningstar Rating"] }}</div>
-  <div>NAV Change {{ fund["NAV Change"] }}</div>
+  <div>NAV {{ fund["NAV"] }}</div>
+  <div>NAV Change {{ fund["NAV Change"] || "- -"}}</div>
   <div>Fund Size {{ fund["Fund Size"] | currency }}</div>
   <div>Ticker Symbol {{ fund["Ticker Symbol"] }}</div>
   <div>Yield {{ fund["Yield"] }}</div>
