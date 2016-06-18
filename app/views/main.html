@@ -1,13 +1,210 @@
-<div>
-  <div>Fund Name {{ fund["Fund Name"] }}</div>
-  <div>Security {{ fund["Security"] }}</div>
-  <div>Currency {{ fund["Currency"] }}</div>
-  <div>Launch Date {{ fund["Launch Date"] || "- -" | convertUSDate }}</div>
-  <div>Morningstar Rating {{ fund["Morningstar Rating"] }}</div>
-  <div>NAV {{ fund["NAV"] }}</div>
-  <div>NAV Change {{ fund["NAV Change"] || "- -"}}</div>
-  <div>Fund Size {{ fund["Fund Size"] | currency }}</div>
-  <div>Ticker Symbol {{ fund["Ticker Symbol"] }}</div>
-  <div>Yield {{ fund["Yield"] }}</div>
-  <div>Date {{ fund["Date"] || "- -"}}</div>
+<div class="row">
+  <div class="heading">Changelist / Build</div>
+  <div class="heading">Owner</div>
+  <div class="heading">Time Started</div>
+  <div class="heading">State</div>
+  <div class="heading">Metrics</div>
+  <div class="heading">Build</div>
+  <div class="heading">Unit Test</div>
+  <div class="heading">Functional Test</div>
+</div>
+
+<!-- TODO change all the SVGs to fonts -->
+<div ng-repeat="test in tests track by $index" class="row {{ $index === isOpen ? 'active' : ''  }} {{ test.state | lowercase }}" ng-click="toggle($index)">
+  <div class="col">
+    <span class="icon" ng-if="test.type === 'Build'">
+      <svg class="build" width="100%" height="100%" viewBox="0 0 43 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+        <g><g><rect x="29.21" y="0.048" width="13.918" height="33.252" class="fill"/><rect x="38.254" y="1.978" width="3.734" height="1.38" style="fill:#fff;"/><rect x="38.254" y="3.978" width="3.734" height="1.38" style="fill:#fff;"/></g><g><g><rect x="2.533" y="5.642" width="31.833" height="20.773" style="fill:#fff;stroke-width:1px;" class="stroke" /><rect x="4.551" y="7.638" width="27.797" height="16.782" class="fill"/></g><rect x="15.888" y="27.302" width="5.123" height="5.123" class="fill"/></g><g><path d="M36.949,37.687l-36.998,0l6.539,-6.539l25.17,0l5.289,6.539Z" class="fill"/><g><path d="M32.436,35.056l-27.257,0l2.586,-2.691l22.084,0l2.587,2.691Z" style="fill:#fff;"/><path d="M6.189,33.204l25.386,0" style="fill:none;stroke-width:0.5px;" class="stroke" /><path d="M5.316,34.276l26.817,0" style="fill:none;stroke-width:0.5px;" class="stroke" /></g><rect x="12.402" y="35.863" width="12.096" height="0.82" style="fill:#fff;"/></g></g>
+      </svg>
+    </span>
+
+    <span class="icon" ng-if="test.type === 'Firewall'">
+      <svg class="firewall" width="100%" height="100%" viewBox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-miterlimit:1;">
+        <g>
+          <rect x="0.281" y="0.359" width="20.676" height="16.371" style="fill:#fff;stroke-width:0.5px;"/>
+          <path class="stroke" d="M1.576,1.85l2.842,0" style="fill:none;stroke-width:0.75px;"/>
+          <path class="stroke" d="M6.676,1.892l2.564,0" style="fill:none;stroke-width:0.75px;"/>
+          <path class="stroke" d="M11.649,1.933l2.577,0" style="fill:none;stroke-width:0.75px;"/>
+          <path class="stroke" d="M16.522,1.933l3.001,0" style="fill:none;stroke-width:0.75px;"/>
+          <path class="stroke" d="M1.516,3.989l0.764,0" style="fill:none;stroke-width:1.25px;"/>
+          <path class="stroke" d="M4.133,3.989l3.128,0" style="fill:none;stroke-width:1.25px;"/>
+          <path class="stroke" d="M8.973,3.989l2.961,0" style="fill:none;stroke-width:1.25px;"/>
+          <path class="stroke" d="M14.109,3.989l2.792,0" style="fill:none;stroke-width:1.25px;"/>
+          <path class="stroke" d="M18.76,3.989l0.996,0" style="fill:none;stroke-width:1.25px;"/>
+          <path class="stroke" d="M1.577,5.975l2.867,0" style="fill:none;stroke-width:0.75px;"/>
+          <path class="stroke" d="M6.787,5.975l2.522,0" style="fill:none;stroke-width:0.75px;"/>
+          <path class="stroke" d="M11.974,5.975l2.125,0" style="fill:none;stroke-width:0.75px;"/>
+          <path class="stroke" d="M16.566,5.975l3.039,0" style="fill:none;stroke-width:0.75px;"/>
+          <path class="stroke" d="M1.398,8.179l0.867,0" style="fill:none;stroke-width:1.25px;"/>
+          <path class="stroke" d="M4.168,8.179l2.953,0" style="fill:none;stroke-width:1.25px;"/>
+          <path class="stroke" d="M9.082,8.179l2.833,0" style="fill:none;stroke-width:1.25px;"/>
+          <path class="stroke" d="M14.416,8.179l2.406,0" style="fill:none;stroke-width:1.25px;"/>
+          <path class="stroke" d="M19.142,8.179l0.728,0" style="fill:none;stroke-width:1.25px;"/>
+          <path class="stroke" d="M1.468,10.955l2.829,0" style="fill:none;stroke-width:0.75px;"/>
+          <path class="stroke" d="M6.825,10.889l2.465,0" style="fill:none;stroke-width:0.75px;"/>
+          <path class="stroke" d="M11.651,10.825l2.553,0" style="fill:none;stroke-width:0.75px;"/>
+          <path class="stroke" d="M16.655,10.691l3.051,0" style="fill:none;stroke-width:0.75px;"/>
+          <path class="stroke" d="M1.417,12.972l0.917,0" style="fill:none;stroke-width:1.25px;"/>
+          <path class="stroke" d="M4.249,12.972l2.892,0" style="fill:none;stroke-width:1.25px;"/>
+          <path class="stroke" d="M9.067,12.972l2.986,0" style="fill:none;stroke-width:1.25px;"/>
+          <path class="stroke" d="M14.383,12.972l2.356,0" style="fill:none;stroke-width:1.25px;"/>
+          <path class="stroke" d="M18.773,12.972l0.659,0" style="fill:none;stroke-width:1.25px;"/>
+          <path class="stroke" d="M1.456,15.076l2.879,0" style="fill:none;stroke-width:0.75px;"/>
+          <path class="stroke" d="M6.928,15.076l2.506,0" style="fill:none;stroke-width:0.75px;"/>
+          <path class="stroke" d="M11.687,15.076l2.612,0" style="fill:none;stroke-width:0.75px;"/>
+          <path class="stroke" d="M16.649,15.076l3.003,0" style="fill:none;stroke-width:0.75px;"/>
+        </g>
+      </svg>
+    </span>
+    <span class="name">{{ test.name || "&nbsp;" }}</span>
+  </div>
+  <div class="col">{{ test.owner || "&nbsp;" }}</div>
+  <div class="col">{{ test.date }} {{ test.time || "&nbsp;" }}</div>
+  <div class="col">{{ test.state || "&nbsp;" }}</div>
+  <!-- TODO maybe make these 4 into directives -->
+  <div class="col">
+    <div class="bar {{ test.metrics.status }}"></div>
+    <div class="content" ng-click="lightbox()">
+      <h3>Metrics</h3>
+      <div ng-if="test.metrics.status">
+        <div class="half">
+          <div class="arrow {{ test.metrics.test < 0 ? 'red' : 'green' }}">
+            <svg width="100%" height="100%" viewBox="0 0 34 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+                <path d="M34.123,20.511l-8.863,0l0,16.562l-16.414,0l0,-16.562l-8.862,0l17.069,-20.402l17.07,20.402Z"/>
+            </svg>
+            <span>{{ Math.abs(test.metrics.test) }}</span>
+          </div>
+          <h4>Test</h4>
+        </div>
+        <div class="half">
+          <div class="arrow {{ test.metrics.maintainability < 0 ? 'red' : 'green' }}">
+            <svg width="100%" height="100%" viewBox="0 0 34 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><path d="M34.123,20.511l-8.863,0l0,16.562l-16.414,0l0,-16.562l-8.862,0l17.069,-20.402l17.07,20.402Z"/></svg>
+            <span>{{ Math.abs(test.metrics.maintainability) }}</span>
+          </div>
+          <h4>Maintainability</h4>
+        </div>
+        <div class="half">
+          <div class="arrow {{ test.metrics.security < 0 ? 'red' : 'green' }}">
+            <svg width="100%" height="100%" viewBox="0 0 34 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><path d="M34.123,20.511l-8.863,0l0,16.562l-16.414,0l0,-16.562l-8.862,0l17.069,-20.402l17.07,20.402Z"/></svg>
+            <span>{{ Math.abs(test.metrics.security) }}</span>
+          </div>
+          <h4>Security</h4>
+        </div>
+        <div class="half">
+          <div class="arrow {{ test.metrics.workmanship < 0 ? 'red' : 'green' }}">
+            <svg width="100%" height="100%" viewBox="0 0 34 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><path d="M34.123,20.511l-8.863,0l0,16.562l-16.414,0l0,-16.562l-8.862,0l17.069,-20.402l17.07,20.402Z"/></svg>
+            <span>{{ Math.abs(test.metrics.workmanship) }}</span>
+          </div>
+          <h4>Workmanship</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="bar {{ test.build.status }}"></div>
+    <div class="content" ng-click="lightbox()">
+      <h3>Build</h3>
+      <div ng-if="test.build.status">
+        <div class="half">
+          <svg class="computer blue" width="100%" height="100%" viewBox="0 0 43 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+            <g><g><rect x="29.21" y="0.048" width="13.918" height="33.252" class="fill"/><rect x="38.254" y="1.978" width="3.734" height="1.38" style="fill:#fff;"/><rect x="38.254" y="3.978" width="3.734" height="1.38" style="fill:#fff;"/></g><g><g><rect x="2.533" y="5.642" width="31.833" height="20.773" style="fill:#fff;stroke-width:1px;" class="stroke" /><rect x="4.551" y="7.638" width="27.797" height="16.782" class="fill"/></g><rect x="15.888" y="27.302" width="5.123" height="5.123" class="fill"/></g><g><path d="M36.949,37.687l-36.998,0l6.539,-6.539l25.17,0l5.289,6.539Z" class="fill"/><g><path d="M32.436,35.056l-27.257,0l2.586,-2.691l22.084,0l2.587,2.691Z" style="fill:#fff;"/><path d="M6.189,33.204l25.386,0" style="fill:none;stroke-width:0.5px;" class="stroke" /><path d="M5.316,34.276l26.817,0" style="fill:none;stroke-width:0.5px;" class="stroke" /></g><rect x="12.402" y="35.863" width="12.096" height="0.82" style="fill:#fff;"/></g></g>
+          </svg>
+          <h4>Debug</h4>
+        </div>
+        <div class="half">
+          <svg class="computer blue" width="100%" height="100%" viewBox="0 0 43 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+            <g><g><rect x="29.21" y="0.048" width="13.918" height="33.252" class="fill"/><rect x="38.254" y="1.978" width="3.734" height="1.38" style="fill:#fff;"/><rect x="38.254" y="3.978" width="3.734" height="1.38" style="fill:#fff;"/></g><g><g><rect x="2.533" y="5.642" width="31.833" height="20.773" style="fill:#fff;stroke-width:1px;" class="stroke" /><rect x="4.551" y="7.638" width="27.797" height="16.782" class="fill"/></g><rect x="15.888" y="27.302" width="5.123" height="5.123" class="fill"/></g><g><path d="M36.949,37.687l-36.998,0l6.539,-6.539l25.17,0l5.289,6.539Z" class="fill"/><g><path d="M32.436,35.056l-27.257,0l2.586,-2.691l22.084,0l2.587,2.691Z" style="fill:#fff;"/><path d="M6.189,33.204l25.386,0" style="fill:none;stroke-width:0.5px;" class="stroke" /><path d="M5.316,34.276l26.817,0" style="fill:none;stroke-width:0.5px;" class="stroke" /></g><rect x="12.402" y="35.863" width="12.096" height="0.82" style="fill:#fff;"/></g></g>
+          </svg>
+          <h4>Release</h4>
+        </div>
+        <strong class="full">{{ test.build.time }} - {{ test.build.date }}</strong>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="bar {{ test['unit test'].status }}"></div>
+    <div class="content" ng-click="lightbox()">
+      <h3>Unit Test</h3>
+      <div ng-if="test['unit test'].status">
+        <div class="half">
+          <svg width="100" height="100" class="pie">
+            <circle r="25" cx="50" cy="50" style="stroke-dasharray: {{ 158 - (25 / test['unit test'].pass * 100) }}  158" />
+          </svg>
+          <span class="success">{{ test["unit test"].success }}</span>
+          <span class="failure">{{ test["unit test"].failure }}</span>
+        </div> 
+        <div class="half">
+          <h2>{{ test["unit test"].pass }}%</h2>
+          test passed
+        </div>
+        <div class="full coverage">
+          <span><strong>{{ test["unit test"].covered }}%</strong><br/> code covered</span>
+          <div class="progress" style="width: {{ test['unit test'].covered }}%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="bar {{ test['functional test'].status }}"></div>
+    <div class="content" ng-click="lightbox()">
+      <h3>Functional Test</h3>
+      <div ng-if="test['functional test'].status">
+        <div class="half">
+          <svg width="100" height="100" class="pie">
+            <circle r="25" cx="50" cy="50" style="stroke-dasharray: {{ 158 - (25 / test['functional test'].pass * 100) }} 158" />
+          </svg>
+          <span class="success">{{ test["functional test"].success }}</span>
+          <span class="failure">{{ test["functional test"].failure }}</span>
+        </div>
+        <div class="half">
+          <h2>{{ test["functional test"].pass }}%</h2>
+          test passed
+        </div>
+        <div class="full coverage">
+          <span><strong>{{ test["functional test"].covered }}%</strong><br/> code covered</span>
+          <div class="progress" style="width: {{ test['functional test'].covered }}%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="content">
+      <h4>Result:</h4>
+      <div ng-if="test.state === 'Pending' ">
+        <h2>Pending</h2>
+      </div>
+      <div ng-if="test.state === 'Running' ">
+        <h2>Running</h2>
+      </div>
+      <div ng-if="test.state === 'Accepted' ">
+        <h5>Change Accepted</h5>
+        <h2>Auto-Merged</h2>
+        <button class="cta">Merge Build <img src="images/magnify.svg" alt="Magnify"></button>
+      </div>
+      <div ng-if="test.state === 'Rejected' ">
+        <h5>Change Rejected</h5>
+        <h2>{{ test.reason }}</h2>
+        <button class="cta">Find Issues <img src="images/magnify.svg" alt="Magnify"></button>
+      </div>
+      <div ng-if="test.state === 'Fail' ">
+        <h5>Build Failed</h5>
+        <h2>{{ test.reason }}</h2>
+        <button class="cta">Rebuild <img src="images/magnify.svg" alt="Magnify"></button>
+      </div>
+      <div ng-if="test.state === 'Complete' ">
+        <h5>Complete</h5>
+        <select class="deploy">
+          <option>Production</option>
+          <option>Development</option>
+        </select>
+        <br>
+        <button class="cta">Deploy <img src="images/magnify.svg" alt="Magnify"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="overlay {{ switch ? 'active' : ''  }}" ng-click="lightbox()">
+  <div class="lightbox">
+    ligthbox
+  </div>
 </div>

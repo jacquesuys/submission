@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('fundlistApp', []);
+angular.module('crossoverApp', []);

@@ -1,0 +1,480 @@
+@import "../bower_components/susy/sass/susy";
+@import './font';
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; 
+}
+
+// sass converts all hex to rgba if passed as param
+$light-gray: #CACBCB;
+$gray: #D8D8D8;
+$blue: #4C85B7;
+$light-blue: #5E9CD3;
+$red: #BB0008;
+$green: #669945;
+$orange: #EB7D3B;
+
+$susy : (
+  gutters: .05,
+  gutter-position: split
+);
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin gradient($color, $opacity: 1, $stop: 100%) {
+  background: -moz-linear-gradient(left, rgba($color, $opacity) 0%, rgba($color, 0) $stop);
+  background: -webkit-linear-gradient(left, rgba($color, $opacity) 0%, rgba($color, 0) $stop);
+  background: linear-gradient(to right, rgba($color, $opacity) 0%, rgba($color, 0) $stop);
+}
+
+@mixin icon($color) {
+  .content {
+    border-color: $color;
+  }
+
+  .firewall {
+    .stroke {
+      stroke: $color;
+    }
+  }
+
+  .build {
+    .fill {
+      fill: $color;
+    }
+    .stroke {
+      stroke: $color;
+    }
+  }
+}
+
+@mixin status($color, $background: false) {
+  color: rgba($color, 1);
+  border-color: rgba($color, 1);
+
+  @if $background != false {
+    @include gradient($background, 1, 50%);
+  }
+}
+
+body {
+  font-size: 16px;
+  font-family: "Helvetica-Neue", Helvetica, Arial, sans-serif;
+}
+
+// remove all margins from h1 - h5
+@for $i from 1 through 5 {
+  h#{$i} {
+    margin: 0;
+  }
+}
+
+.container {
+  @include container(80%);
+  background-color: #F6F9FC;
+  padding: 5px;
+}
+
+button {
+  background-color: $light-blue;
+  color: white;
+  border: solid 1px $light-gray;
+
+  &.cta {
+    width: 70%;
+    padding: 5px;
+    font-size: 1rem;
+
+    img {
+      max-width: 15px;
+      float: right;
+      margin-top: 2px;
+    }
+  }
+}
+
+.full {
+  float: left;
+  clear: both;
+  width: 100%;
+}
+
+.half {
+  @include span(1 of 2);
+
+  &:nth-child(odd) {
+    clear: right;
+  }
+}
+
+.progress {
+  position: absolute;
+  height: 28px;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(green, 0.75);
+}
+
+.row {
+  @include clearfix;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  background-color: #FBFCFE;
+  font-size: 14 / 16 * 1rem;
+  margin-bottom: 10px;
+  padding: 5px;
+  text-align: center;
+
+  .heading {
+    @include span(1 of 8);
+    white-space: nowrap;
+  }
+
+  .col {
+    @include span(1 of 8);
+    white-space: nowrap;
+    line-height: 1.25rem;
+
+    &:first-child {
+      position: relative;
+      text-align: left;
+
+      .name {
+        position: absolute;
+        transform: translate(10px, 3px);
+      }
+
+      .icon svg {
+        max-width: 25%;
+      }
+    }
+
+    @for $i from 5 through 9 {
+      &:nth-child(#{$i}) {
+        border: solid 1px #CACBCB;
+        background-color: $gray;
+
+        h3 {
+          padding-bottom: 10px;
+        }
+
+        // TODO rework bar to with progress class
+        .bar {
+          display: block;
+          height: 20px;
+          border-color: $gray;
+        }
+
+        .content {
+          display: none;
+          height: 200px;
+          font-size: 0.75rem;
+          background-color: #fff;
+        }
+
+        .content,
+        .bar {
+          border-width: 1px;
+          border-style: solid;
+        }
+      }
+    }
+
+    &:nth-child(6) {
+      .half {
+        margin-bottom: 20px;
+      }
+      .computer {
+        max-width: 65%;
+      }
+    }
+
+    &:nth-child(7),
+    &:nth-child(8) {
+      position: relative;
+
+      h2 {
+        font-size: 24 / 16 * 1rem;
+      }
+
+      .half {
+        position: relative;
+
+        span {
+          position: absolute;
+          color: #000;
+          font-size: 13 / 16 * 1rem;
+          font-weight: bold;
+
+          &.success {
+            transform: translate(-25%, -25%);
+            top: 25%;
+            left: 25%;
+          }
+
+          &.failure {
+            top: 60%;
+            left: 90%;
+            transform: translate(-90%, -60%);
+          }
+        }
+      }
+
+      .coverage {
+        position: absolute;
+        transform: translateY(100%);
+        width: 90%;
+        left: 5%;
+        bottom: 40px;
+      }
+    }
+
+    &:nth-child(9) {
+      display: none;
+      border: none;
+
+      h4 {
+        font-size: 14 / 16 * 1rem;
+      }
+
+      h5 {
+        font-size: 18 / 16 * 1rem;
+      }
+
+      h2 {
+        font-size: 24 / 16 * 1rem;
+      }
+
+      h2, h4, h5 {
+        padding-bottom: 10px;
+      }
+
+      .content {
+        background: transparent;
+        border: none;
+      }
+
+      .deploy {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  &.active {
+
+    .name {
+      text-decoration: underline;
+      color: $blue;
+    }
+
+    .col:nth-child(5) {
+      clear: both;
+    }
+
+    .col {
+      @for $i from 5 through 9 {
+        &:nth-child(#{$i}) {
+          @include span(1 of 5);
+          box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+          background-color: transparent;
+
+          .bar {
+            display: none;
+          }
+
+          .content {
+            display: block;
+            padding: 5px;
+            @include clearfix;
+
+            h3 {
+              margin: 0;
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+
+    .col:nth-child(9) {
+      display: block;
+      box-shadow: none;
+    }
+  }
+}
+
+// states
+.pending {
+  @include status($light-gray);
+  @include icon($light-gray);
+}
+
+.running {
+  @include status($blue, lighten($blue, 35%));
+  @include icon($blue);
+}
+
+.fail {
+  @include status($orange, lighten($orange, 40%));
+  @include icon($orange);
+}
+
+.rejected {
+  @include status($red, lighten($red, 60%));
+  @include icon($red);
+}
+
+.complete,
+.accepted {
+  @include status($green, lighten($green, 50%));
+  @include icon($green);
+}
+
+.bar {
+  &.blue {
+    background-color: $blue;
+    // will need transitions
+  }
+
+  &.green {
+    background-color: $green;
+  }
+
+  &.red {
+    background-color: $red;
+  }
+
+  &.orange {
+    background-color: $orange;
+  }
+
+  &.gray {
+    background-color: $gray;
+  }
+}
+
+.pie {
+  background: orange;
+  border-radius: 50%;
+  transform: rotate(70deg);
+}
+
+.pie circle {
+  fill: orange;
+  stroke: yellowgreen;
+  stroke-width: 50;
+}
+
+.arrow {
+  max-width: 50%;
+  position: relative;
+  margin: 0 auto;
+
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 16 / 16 * 1rem;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  }
+
+  &.green {
+    path {
+      fill: $green;
+    }
+  }
+
+  &.red {
+    path {
+      fill: $red;
+    }
+  }
+}
+
+.computer {
+  &.blue {
+    .fill {
+      fill: $blue;
+    }
+    .stroke {
+      stroke: $blue;
+    }
+  }
+}
+
+.coverage {
+  background-color: rgba(orange, 0.75);
+  line-height: 14 / 16 * 1rem;
+  color: #000;
+
+  strong {
+    font-size: 1rem;
+  }
+
+  > span {
+    z-index: 1;
+    position: relative;
+  } 
+}
+
+// lightbox
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+
+  .lightbox {
+    width: 50%;
+    height: 50%;
+    background: #fff;
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 25%;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    will-change: opacity;
+    transition: opacity 0.3s cubic-bezier(0,0,0.3,1);
+  }
+
+  &.active {
+    .lightbox {
+      opacity: 1;
+    }
+
+    &::before {
+      pointer-events: auto;
+      opacity: 1;
+    }
+  }
+}
+

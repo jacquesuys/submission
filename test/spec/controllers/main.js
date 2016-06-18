@@ -3,20 +3,21 @@
 describe('Controller: MainCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('fundlistApp'));
+  beforeEach(module('crossoverApp'));
 
-  var MainCtrl, $scope;
+  var MainCtrl, $scope, $controller;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function (_$controller_, $rootScope) {
+    $controller = _$controller_;
     $scope = $rootScope.$new();
     MainCtrl = $controller('MainCtrl', {
       $scope: $scope
     });
   }));
 
-  it('can\'t think of anything to test here', function () {
-    expect(true).toEqual(true);
+  it('should exist', function () {
+    expect(!!$controller).toBe(true);
   });
 
 });
